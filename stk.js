@@ -311,7 +311,7 @@ e = encodeURIComponent,
 z = d.createElement('scr'+'ipt'),
 
 p = (from_greader ? 'gr=1&' : '') +
-'a=send-to-kindle&k=VkyhhscC8YRz&u=' + e(url) + '&t=' + e(title) +
+'a=send-to-kindle&k=' + window.kindleKey + '&u=' + e(url) + '&t=' + e(title) +
 '&can_url=' + (canonical_url ? e(canonical_url) : '') +
 '&s=' + e(s.length >= 20 && s.length < 10240 ? s : '') +
 '&tzd=' + e(tzd) +
