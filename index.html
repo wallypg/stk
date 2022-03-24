@@ -7,14 +7,20 @@
 <body>
 	<script>
 		const urlParams = new URLSearchParams(window.location.search);
-		const username = urlParams.get('username');
-		const password = urlParams.get('password');
-		const url = encodeURIComponent(urlParams.get('url'));
+		const url = urlParams.get('url');
 
-		if(username && password && url) {
-			const sendtoreaderUrl = `https://sendtoreader.com/api/send/?username=${username}&password=${password}&url=${url}`;
-			fetch(sendtoreaderUrl);
+		if(url) {
+			fetch(url).then( data => data.text()).then(function (html) {
+				console.log(html);
+
+				var ifrm = document.createElement("iframe");
+		        ifrm.setAttribute("src", url);
+		        ifrm.style.width = "640px";
+		        ifrm.style.height = "480px";
+		        document.body.appendChild(ifrm);
+			});
 		}
+
 	</script>
 </body>
 </html>
