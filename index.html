@@ -11,37 +11,40 @@
 		const url = urlParams.get('url');
 		const apiKey = urlParams.get('apiKey');
 		const kindleKey = urlParams.get('kindleKey');
-		const options = {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/x-www-form-urlencoded',
-				'X-RapidAPI-Host': 'full-text-rss.p.rapidapi.com',
-				'X-RapidAPI-Key': apiKey
-			},
-			body: new URLSearchParams({
-				url: url,
-				xss: '1',
-				lang: '0',
-				links: 'remove',
-				content: 'html'
-			});
-		};
 
-		fetch('https://full-text-rss.p.rapidapi.com/extract.php', options)
-			.then(response => response.json())
-			.then(response => {
-				document.querySelector("#content").innerHTML = response.content;
-				d=document, z=d.createElement('scr'+'ipt'), b=d.body;
-				try {
-					if(!b) throw(0);
-					d.title='(Saving...)' + d.title;
-					z.setAttribute('src','https://cdn.jsdelivr.net/gh/wallypg/stk/stk.min.js');
-					b.appendChild(z);
-				} catch(e) {
-					alert('Wait.');
-				}
-			})
-			.catch(err => console.error(err));
+		if(url && apiKey && kindleKey){
+			const options = {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/x-www-form-urlencoded',
+					'X-RapidAPI-Host': 'full-text-rss.p.rapidapi.com',
+					'X-RapidAPI-Key': apiKey
+				},
+				body: new URLSearchParams({
+					url: url,
+					xss: '1',
+					lang: '0',
+					links: 'remove',
+					content: 'html'
+				});
+			};
+			fetch('https://full-text-rss.p.rapidapi.com/extract.php', options)
+				.then(response => response.json())
+				.then(response => {
+					document.querySelector("#content").innerHTML = response.content;
+					d=document, z=d.createElement('scr'+'ipt'), b=d.body;
+					try {
+						if(!b) throw(0);
+						d.title='(Saving...)' + d.title;
+						z.setAttribute('src','https://cdn.jsdelivr.net/gh/wallypg/stk/stk.min.js');
+						b.appendChild(z);
+					} catch(e) {
+						alert('Wait.');
+					}
+				})
+				.catch(err => console.error(err));
+
+		}
 	</script>
 </body>
 </html>
