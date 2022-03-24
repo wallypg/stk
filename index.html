@@ -6,7 +6,6 @@
 	<style type="text/css"></style>
 </head>
 <body>
-	<h1></h1>
 	<div id="content"></div>
 	<script>
 		const urlParams = new URLSearchParams(window.location.search);
@@ -34,12 +33,10 @@
 				.then(response => response.json())
 				.then(response => {
 					document.title = response.title;
-					document.querySelector("h1").innerHTML = response.title;
 					document.querySelector("#content").innerHTML = response.content;
 					d=document, z=d.createElement('scr'+'ipt'), b=d.body;
 					try {
 						if(!b) throw(0);
-						d.title='(Saving...)' + d.title;
 						z.setAttribute('src','https://cdn.jsdelivr.net/gh/wallypg/stk/stk.min.js');
 						b.appendChild(z);
 					} catch(e) {
