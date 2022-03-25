@@ -1,5 +1,6 @@
 <html lang="en">
-<head></head>
+<head>
+</head>
 <body>
 	<script>
 		var s=null;
@@ -49,16 +50,19 @@
 				})
 				.then(response => response.json())
 				.then(response => {
-					const e = encodeURIComponent;
-					let b = (response.content.length > 768000) ? response.content : ('<' + '![D[' + jbs_deflate(response.content));
-					if (b.length > 512000) b = '';
+					const 
+						e = encodeURIComponent,
+						title = response.title,
+						content = response.content;
+					let body = content.length > 768000 ? content : '<' + '![D[' + jbs_deflate(content);
+					if (body.length > 512000) body = '';
 
 					fetch('https://www.instapaper.com/bookmarklet/post_v5', {
 						method: 'POST',
 						headers: {
 					    	'Content-Type': 'application/x-www-form-urlencoded'
 					  	},
-						body: 'cors=&ch=VnkiaqcrkV9YABYreinRpxMraE&cp=C6cBQ0KPQeQk4V.sZ0.D.9QGiZnHGHn&ce=&cu=8200427&a=send-to-kindle&s=&tzd=&i=&k=' + window.kindleKey + '&u=' + e(url) + '&t=' + e(response.title) + '&can_url=' + e(url) + "&b=" + e(b)
+						body: 'ch=VnkiaqcrkV9YABYreinRpxMraE&cp=C6cBQ0KPQeQk4V.sZ0.D.9QGiZnHGHn&cu=8200427&a=send-to-kindle&k=' + kindleKey + '&u=' + e(url) + '&t=' + e(title) + '&can_url=' + e(url) + "&b=" + e(body)
 					})
 				})
 				.catch(err => console.error(err));
