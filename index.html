@@ -145,7 +145,7 @@
 			const apiKey = urlParams.get('apiKey');
 			const kindleKey = urlParams.get('kindleKey');
 
-			if(url && apiKey && kindleKey){
+			if(articleUrl && apiKey && kindleKey){
 				const options = {
 					method: 'POST',
 					headers: {
@@ -164,30 +164,16 @@
 				fetch('https://full-text-rss.p.rapidapi.com/extract.php', options)
 					.then(response => response.json())
 					.then(response => {
-						var tzd = '';
-						var thumbnail = '';
-
-						// var pageInfo = SimpleParseripb594730.getBasicPageInfo(),
-						// 	canonical_url = pageInfo.canonical_url,
-						// 	url = pageInfo.url;
-						// title = response.title;
-						// thumbnail = pageInfo.thumbnail;
-						var canonical_url = articleUrl,
-						url = pageInfo.url,
-						title = response.title;
-						var d = document,
-							l = d.location,
-							e = window.getSelection,
-							k = d.getSelection,
-							x = d.selection,
-							s = String(e ? e() : (k ? k() : (x ? x.createRange().text : ''))),
+						var tzd = '',
+							thumbnail = '',
+							canonical_url = articleUrl,
+							url = articleUrl,
+							title = response.title,
 							e = encodeURIComponent,
-							z = d.createElement('scr' + 'ipt'),
-
 							p = 
 							'a=send-to-kindle&k=' + window.kindleKey + '&u=' + e(url) + '&t=' + e(title) +
 							'&can_url=' + (canonical_url ? e(canonical_url) : '') +
-							'&s=' + e(s.length >= 20 && s.length < 10240 ? s : '') +
+							'&s=' +
 							'&tzd=' + e(tzd) +
 							'&i=' + e(thumbnail)
 
@@ -203,7 +189,6 @@
 						);
 					})
 					.catch(err => console.error(err));
-
 			}
 		})()
 	</script>
