@@ -154,7 +154,7 @@
 						'X-RapidAPI-Key': apiKey
 					},
 					body: new URLSearchParams({
-						url: url,
+						url: articleUrl,
 						xss: '1',
 						lang: '0',
 						links: 'remove',
@@ -164,9 +164,7 @@
 				fetch('https://full-text-rss.p.rapidapi.com/extract.php', options)
 					.then(response => response.json())
 					.then(response => {
-						var tzd = '',
-							thumbnail = '',
-							canonical_url = articleUrl,
+						var canonical_url = articleUrl,
 							url = articleUrl,
 							title = response.title,
 							e = encodeURIComponent,
@@ -174,8 +172,8 @@
 							'a=send-to-kindle&k=' + window.kindleKey + '&u=' + e(url) + '&t=' + e(title) +
 							'&can_url=' + (canonical_url ? e(canonical_url) : '') +
 							'&s=' +
-							'&tzd=' + e(tzd) +
-							'&i=' + e(thumbnail)
+							'&tzd=' +
+							'&i=';
 
 						var b = jbsipb594730(response.content);
 						if (b.length > 512000) b = '';
