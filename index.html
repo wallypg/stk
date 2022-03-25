@@ -1,13 +1,7 @@
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>STK</title>
-	<style type="text/css"></style>
-</head>
+<head></head>
 <body>
 	<script>
-		// DEFLATE, base64 by Dan Kogai http://github.com/dankogai/
 		var s=null;
 		(function(){function y(b){for(var i="";b.length>0;)i+=String.fromCharCode.apply(String,b.splice(0,65536));return i}function da(b){return y(x(P(b)))}function n(b){return x(P(b))}function ea(b){return y(Q(P(b)))}function H(b){return y(Q(b))}function R(b){return y(V(b))}function fa(b){return S(P(b))}function Q(b){for(var i=[],j=0,l=b.length;j<l;j++){var h=b[j];if(h<128)i.push(h);else{var m=b[++j];if(h<224)i.push((h&31)<<6|m&63);else{var n=b[++j];i.push((h&15)<<12|(m&63)<<6|n&63)}}}return i}function x(b){for(var i=
 		[],j=0,l=b.length;j<l;j++){var h=b[j];h<128?i.push(h):h<2048?i.push(192|h>>>6,128|h&63):i.push(224|h>>>12&15,128|h>>>6&63,128|h&63)}return i}function V(b){for(var b=b.replace(/[^A-Za-z0-9+\/]+/g,""),i=[],j=b.length%4,l=0,h=b.length;l<h;l+=4){var m=(ga[b.charAt(l)]||0)<<18|(ga[b.charAt(l+1)]||0)<<12|(ga[b.charAt(l+2)]||0)<<6|(ga[b.charAt(l+3)]||0);i.push(m>>16,m>>8&255,m&255)}i.length-=[0,0,2,1][j];return i}function S(b){for(var i=0;b.length%3;)b.push(0),i++;for(var j=[],l=0,h=b.length;l<h;l+=3){var m=
@@ -30,123 +24,15 @@
 		[new m(0,0,0,0),new m(4,4,8,4),new m(4,5,16,8),new m(4,6,32,32),new m(4,4,16,16),new m(8,16,32,32),new m(8,16,128,128),new m(8,32,128,256),new m(32,128,258,1024),new m(32,258,258,4096)];window.RawDeflate||(window.RawDeflate={});window.RawDeflate.n=function(a){var b;xa=a;Ka=0;typeof b=="undefined"&&(b=6);(a=b)?a<1?a=1:a>9&&(a=9):a=6;$=a;O=Ga=!1;if(ca==s){ba=r=ya=s;ca=Array(8192);f=Array(65536);Ea=Array(8192);Ba=Array(32832);F=Array(65536);D=Array(573);for(a=0;a<573;a++)D[a]=new la;J=Array(61);for(a=
 		0;a<61;a++)J[a]=new la;M=Array(288);for(a=0;a<288;a++)M[a]=new la;aa=Array(30);for(a=0;a<30;a++)aa[a]=new la;t=Array(39);for(a=0;a<39;a++)t[a]=new la;z=new za;A=new za;L=new za;v=Array(16);o=Array(573);E=Array(573);ma=Array(256);Z=Array(512);Da=Array(29);sa=Array(30);ra=Array(parseInt(1024))}for(var c=Array(1024),e=[];(a=ga(c,c.length))>0;){var d=Array(a);for(b=0;b<a;b++)d[b]=String.fromCharCode(c[b]);e[e.length]=d.join("")}xa=s;return e.join("")}})();window.jbs_deflate=function(y){return Base64.m(RawDeflate.n(unescape(encodeURIComponent(y))))};
 
-		// var SimpleParseripb594730 = (function() {
-		// 	var scrubTitle = function(title) {
-		// 		return title.substring(0, 12) == '(Saving...) ' ? title.substring(12) : title;
-		// 	};
-		// 	var getContentFromTag = function(tag, attribute, value, useHTML) {
-		// 		var tags = document.getElementsByTagName(tag),
-		// 			i, obj;
-		// 		for (i = 0; i < tags.length; i += 1) {
-		// 			obj = tags[i];
-		// 			if (obj.getAttribute &&
-		// 				obj.getAttribute(attribute) === value) {
-		// 				return obj.getAttribute('content') ||
-		// 					obj.getAttribute('value') ||
-		// 					(useHTML ? obj.innerHTML : null);
-		// 			}
-		// 		}
-		// 		return null;
-		// 	};
-		// 	var getContentUsingXPaths = function(xpaths) {
-		// 		var result, i;
-		// 		for (i in xpaths) {
-		// 			try {
-		// 				result = document.evaluate(xpaths[i], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE);
-		// 				if (result.singleNodeValue) {
-		// 					return result.singleNodeValue.textContent;
-		// 				}
-		// 			} catch (e) {}
-		// 		}
-		// 	};
-		// 	return {
-		// 		getBasicPageInfo: function() {
-		// 			var canonical_url,
-		// 				links = document.getElementsByTagName('link'),
-		// 				params = {
-		// 					url: document.URL
-		// 				},
-		// 				i, title,
-		// 				// XPaths
-		// 				titleXPaths;
-		// 			// Attempt to get the canonical url
-		// 			canonical_url = getContentFromTag('meta', 'property', 'og:url');
-		// 			if (canonical_url) {
-		// 				params.canonical_url = canonical_url;
-		// 			} else {
-		// 				for (i = 0; i < links.length; i++) {
-		// 					if (links[i].getAttribute('rel') === 'canonical') {
-		// 						params.canonical_url = links[i].getAttribute('href');
-		// 						break;
-		// 					}
-		// 				}
-		// 			}
-		// 			// Think about only grabbing the title if its canonical or parsed
-		// 			title = getContentFromTag('meta', 'property', 'og:title');
-
-		// 			if (!title) {
-		// 				title = document.title;
-		// 			}
-		// 			params.title = scrubTitle(title);
-		// 			thumbnail = getContentFromTag('meta', 'property', 'og:image');
-		// 			if (thumbnail) {
-		// 				params.thumbnail = thumbnail;
-		// 			} else {
-		// 				params.thumbnail = ''
-		// 			}
-		// 			return params;
-		// 		}
-		// 	}
-		// })();
-
-		function jbsipb594730(html) {
-			if (html.length > 768000) return html; /* too big to deflate quickly */
-			return '<' + '![D[' + jbs_deflate(html);
-		}
-
-		function _corsipb594730(method, url, postbody, completionFn, errorFn) {
-			try {
-				if (window.XDomainRequest) {
-					var xdr = new XDomainRequest();
-					if (!xdr) throw (0);
-					xdr.onerror = errorFn;
-					xdr.ontimeout = errorFn;
-					xdr.onprogress = function() {};
-					xdr.onload = function() {
-						completionFn(xdr.responseText);
-					};
-					xdr.open(method, url);
-					xdr.send(postbody);
-				} else if (window.XMLHttpRequest) {
-					var x = new XMLHttpRequest();
-					x.open(method, url, true);
-					x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-					x.onreadystatechange = function() {
-						try {
-							if (x.readyState != 4) return;
-							if (x.status != 200) throw (0);
-							completionFn(x.responseText);
-						} catch (e) {
-							errorFn();
-						}
-					}
-					x.send(postbody);
-				} else {
-					errorFn();
-				}
-			} catch (e) {
-				errorFn();
-			}
-		}
-
 		(function(){
 			const urlParams = new URLSearchParams(window.location.search);
-			const articleUrl = urlParams.get('url');
-			const apiKey = urlParams.get('apiKey');
-			const kindleKey = urlParams.get('kindleKey');
+			const 
+				url = urlParams.get('url'),
+				apiKey = urlParams.get('apiKey'),
+				kindleKey = urlParams.get('kindleKey');
 
-			if(articleUrl && apiKey && kindleKey){
-				const options = {
+			if(url && apiKey && kindleKey){
+				fetch('https://full-text-rss.p.rapidapi.com/extract.php', {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/x-www-form-urlencoded',
@@ -154,39 +40,28 @@
 						'X-RapidAPI-Key': apiKey
 					},
 					body: new URLSearchParams({
-						url: articleUrl,
+						url: url,
 						xss: '1',
 						lang: '0',
 						links: 'remove',
 						content: 'html'
 					})
-				};
-				fetch('https://full-text-rss.p.rapidapi.com/extract.php', options)
-					.then(response => response.json())
-					.then(response => {
-						var canonical_url = articleUrl,
-							url = articleUrl,
-							title = response.title,
-							e = encodeURIComponent,
-							p = 
-							'a=send-to-kindle&k=' + window.kindleKey + '&u=' + e(url) + '&t=' + e(title) +
-							'&can_url=' + (canonical_url ? e(canonical_url) : '') +
-							'&s=' +
-							'&tzd=' +
-							'&i=';
+				})
+				.then(response => response.json())
+				.then(response => {
+					const e = encodeURIComponent;
+					let b = (response.content.length > 768000) ? response.content : ('<' + '![D[' + jbs_deflate(response.content));
+					if (b.length > 512000) b = '';
 
-						var b = jbsipb594730(response.content);
-						if (b.length > 512000) b = '';
-
-						_corsipb594730(
-							'POST', 'https://www.instapaper.com/bookmarklet/post_v5',
-							"cors=&" + "ch=VnkiaqcrkV9YABYreinRpxMraE&cp=C6cBQ0KPQeQk4V.sZ0.D.9QGiZnHGHn&ce=&cu=8200427" +
-							"&" + p + "&b=" + e(b),
-							function(responseText) {},
-							function() {}
-						);
+					fetch('https://www.instapaper.com/bookmarklet/post_v5', {
+						method: 'POST',
+						headers: {
+					    	'Content-Type': 'application/x-www-form-urlencoded'
+					  	},
+						body: 'cors=&ch=VnkiaqcrkV9YABYreinRpxMraE&cp=C6cBQ0KPQeQk4V.sZ0.D.9QGiZnHGHn&ce=&cu=8200427&a=send-to-kindle&s=&tzd=&i=&k=' + window.kindleKey + '&u=' + e(url) + '&t=' + e(response.title) + '&can_url=' + e(url) + "&b=" + e(b)
 					})
-					.catch(err => console.error(err));
+				})
+				.catch(err => console.error(err));
 			}
 		})()
 	</script>
